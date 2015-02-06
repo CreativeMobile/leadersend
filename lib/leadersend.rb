@@ -2,11 +2,6 @@ require 'leadersend/version'
 require 'leadersend/mailer'
 
 module Leadersend
-  ROOT = File.expand_path("../..", __FILE__)
-
-  def self.root
-    return ROOT
-  end
 
   class << self
     attr_accessor :config

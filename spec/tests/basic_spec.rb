@@ -1,9 +1,5 @@
 # rspec spec/tests/basic_spec.rb
 describe "Leadersend" do
-  it "#root returns gem root" do
-    expect(Leadersend.root).to eq File.expand_path("../../..", __FILE__)
-  end
-
   describe "config" do
     it "default username should be ok" do
       expect(Leadersend.config.username).to eq "example@domain.com"
