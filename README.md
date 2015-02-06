@@ -47,7 +47,7 @@ ActionMailer::Base.smtp_settings = {
 ```
 
 ### Send Email
-Instantiate a Leadersend::Mail object with given parameters
+Instantiate a `Leadersend::Mail` object with given parameters
 ```ruby
 mailer = Leadersend::Mail.new to: self.email, from: from, fromname: fromname, subject: subject, template_path: template_path, locals: locals, title: title
 ```
@@ -57,12 +57,12 @@ to: "example@email.com"
 from: "coworker@company.com"
 fromname: "Bob"
 subject: "Friday party!"
-template_path = "delivery/partials/party_markup"
-title = "It is friday!"
-locals = {variable: value, another_variable: different_value} # These will be made available in the template
+template_path: "delivery/partials/party_markup"
+title: "It is friday!"
+locals: {variable: value, another_variable: different_value} # These will be made available in the template
 ```
 
-Call the #send method on the instantiated objecto send an email. This method returns a hash
+Call the *#send* method on the instantiated objec to send an email. This method returns a hash with response
 ```ruby
 sent_mail_hash = mailer.send
 ```
