@@ -21,8 +21,6 @@ module Leadersend
     def send
       result = call_api
       status = (result[0] && result[0]["status"]) ? result[0]["status"] : "error"
-      # @sent_mail = SentMail.create({title: @title, body: @template, status: status, subject: @subject, to_address: @to, response: result.inspect})
-      # return @sent_mail
       return {
         title: @title,
         body: @template,
