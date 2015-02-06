@@ -1,9 +1,9 @@
 module Leadersend
   class Mail
     def initialize to: nil, from: nil, fromname: nil, subject: "System", template_path: nil, locals: {}, title: "System"
-      @api_email_url = LEADERSEND_API_URL
-      @api_user = LEADERSEND_USERNAME
-      @api_key = LEADERSEND_API_KEY
+      @api_email_url = Leadersend.config.api_url
+      @api_user = Leadersend.config.username
+      @api_key = Leadersend.config.api_key
       @to = to
       @subject = subject
       @template_path = template_path
