@@ -1,6 +1,6 @@
 module Leadersend
   class Mail
-    def initialize to: nil, from: nil, fromname: nil, subject: "System", template_path: nil, locals: {}, title: "System"
+    def initialize to: nil, from: nil, fromname: nil, subject: "System", template_path: nil, locals: {}, title: "System", template: ""
       @api_email_url = Leadersend.config.api_url
       @api_user = Leadersend.config.username
       @api_key = Leadersend.config.api_key
@@ -12,6 +12,7 @@ module Leadersend
       @from = from
       @fromname = fromname
       @template_path = template_path
+      @template = template
 
       if @template_path
         @template = ApplicationController.new.render_to_string(:partial => @template_path, :locals => @locals )

@@ -47,9 +47,14 @@ ActionMailer::Base.smtp_settings = {
 ```
 
 ### Send Email
-Instantiate a `Leadersend::Mail` object with given parameters
+####Instantiate a `Leadersend::Mail` object with given parameters
+##### Version with template_path and locals
 ```ruby
 mailer = Leadersend::Mail.new to: self.email, from: from, fromname: fromname, subject: subject, template_path: template_path, locals: locals, title: title
+```
+##### Version with template (raw html)
+```ruby
+mailer = Leadersend::Mail.new to: self.email, from: from, fromname: fromname, subject: subject, template: template, title: title
 ```
 Parameter examples and explanations:
 ```ruby
