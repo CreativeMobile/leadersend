@@ -67,7 +67,7 @@ title: "It is friday!"
 locals: {variable: value, another_variable: different_value} # These will be made available in the template
 ```
 
-Call the *#send* method on the instantiated objec to send an email. This method returns a hash with response
+Call the `#send` method on the instantiated object to send an email. This method returns a hash with response
 ```ruby
 sent_mail_hash = mailer.send
 ```
