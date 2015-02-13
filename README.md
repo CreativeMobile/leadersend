@@ -79,7 +79,7 @@ sent_mail_hash = mailer.send
 Result hash content and explanations:
 ```ruby
 {
-  title: @title,
+  title: @title, # Does not appear in the actual email, used for "type" identification
   body: @template, # returns the actual markup generated
   status: status, # very useful, returns "sent" on success and "error" on fail
   subject: @subject,
@@ -90,7 +90,3 @@ Result hash content and explanations:
 ```
 
 Use this information to populate a logging object like SentMail
-
-
-
-
