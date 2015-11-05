@@ -5,7 +5,7 @@ Ruby wrapper for Leadersend transactional email sending service
 ## Installation
 
 Add this line to your application's Gemfile:
-
+l
 ```ruby
 gem 'leadersend'
 ```
@@ -56,7 +56,7 @@ mailer = Leadersend::Mail.new to: self.email, from: from, fromname: fromname, su
 ```ruby
 mailer = Leadersend::Mail.new to: self.email, from: from, fromname: fromname, subject: subject, template: template, title: title
 ```
-Template is recommended to be a string, line breaks achieved with `<br>` tag liek so:
+Template is recommended to be a string, line breaks achieved with `<br>` tag like so:
 `"Hello, %{variable_name}<br><br>This is the main paragraph<br>Address: Brīvības street 11, Riga"`
 
 Parameter examples and explanations:
