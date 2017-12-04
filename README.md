@@ -47,17 +47,23 @@ ActionMailer::Base.smtp_settings = {
 ```
 
 ### Send Email
-####Instantiate a `Leadersend::Mail` object with given parameters
+#### Instantiate a `Leadersend::Mail` object with given parameters
 ##### Version with template_path and locals
+
 ```ruby
 mailer = Leadersend::Mail.new to: self.email, from: from, fromname: fromname, subject: subject, template_path: template_path, locals: locals, title: title
 ```
+
 ##### Version with template (raw html)
+
 ```ruby
 mailer = Leadersend::Mail.new to: self.email, from: from, fromname: fromname, subject: subject, template: template, title: title
 ```
+
 Template is recommended to be a string, line breaks achieved with `<br>` tag like so:
-`"Hello, %{variable_name}<br><br>This is the main paragraph<br>Address: Brīvības street 11, Riga"`
+```
+"Hello, %{variable_name}<br><br>This is the main paragraph<br>Address: Brīvības street 11, Riga"
+```
 
 Parameter examples and explanations:
 ```ruby
@@ -89,4 +95,4 @@ Result hash content and explanations:
 }
 ```
 
-Use this information to populate a logging object like SentMail
+Use this information to populate a logging object like SentMail.
