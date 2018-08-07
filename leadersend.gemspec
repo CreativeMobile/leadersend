@@ -6,7 +6,7 @@ require 'leadersend/version'
 Gem::Specification.new do |spec|
   spec.name          = "leadersend"
   spec.version       = Leadersend::VERSION
-  spec.date          = Date.today.to_s
+  spec.date          = "2018-08-07"
   spec.authors       = ["Epigene", "Sacristan", "artursbraucs"]
   spec.email         = ["augusts.bautra@gmail.com"]
   spec.summary       = %q{Ruby wrapper for LeaderSend, the Transactional Email Delivery Service}
@@ -21,5 +21,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency 'rspec', "~> 3.2.0"
+  spec.add_development_dependency "rspec", "~> 3.2.0"
 end

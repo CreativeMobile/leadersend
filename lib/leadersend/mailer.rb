@@ -1,6 +1,6 @@
 module Leadersend
   class Mail
-    def initialize to: nil, from: nil, fromname: nil, subject: "System", template_path: nil, locals: {}, title: "System", template: ""
+    def initialize(to: nil, from: nil, fromname: nil, subject: "System", template_path: nil, locals: {}, title: "System", template: "", attachments: [])
       @api_email_url = Leadersend.config.api_url
       @api_user = Leadersend.config.username
       @api_key = Leadersend.config.api_key
@@ -13,6 +13,7 @@ module Leadersend
       @fromname = fromname
       @template_path = template_path
       @template = template
+      @attachments = Array.wrap(attachments)
 
       if @template_path
         @template = ApplicationController.new.render_to_string(:partial => @template_path, :locals => @locals )
@@ -22,7 +23,8 @@ module Leadersend
     def send
       result = call_api
       status = (result[0] && result[0]["status"]) ? result[0]["status"] : "error"
-      return {
+
+      {
         title: @title,
         body: @template,
         status: status,
@@ -35,25 +37,41 @@ module Leadersend
     def call_api
       subject = @subject
       fromname = @fromname
-      options = {method: "messagesSend", apikey: @api_key, to: {email: @to}, subject: @subject, html: @template, from: {name: @fromname, email: @from}, auto_plain: true}
-      resp = post_api @api_email_url, options
-      json = JSON.parse(resp)
-      puts json
-      return json
+      options = {
+        method: "messagesSend",
+        apikey: @api_key,
+        to: {
+          email: @to
+        },
+        subject: @subject,
+        html: @template,
+        from: {
+          name: @fromname,
+          email: @from
+        },
+        auto_plain: true
+      }
+
+      options.merge!(attachments: @attachments) if @attachments.present?
+
+      resp = post_api(@api_email_url, options)
+      JSON.parse(resp)
     rescue => e
-      return [{"status" => "error", "description" => "<#{e.class.name}>: #{e.message}"}]
+      [{"status" => "error", "description" => "<#{e.class.name}>: #{e.message}"}]
     end
 
     private
 
-      def post_api url, params
-        uri = URI.parse(url)
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = false
-        form_params = params.to_query
-        res = http.post(uri.request_uri, form_params)
-        res.body
-      end
+    def post_api(url, params)
+      uri = URI.parse(url)
+      req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
+      req.body = params.to_json
 
+      res = Net::HTTP.start(uri.host, uri.port) do |http|
+        http.request(req)
+      end
+      http.use_ssl = false
+      res.body
+    end
   end
 end
