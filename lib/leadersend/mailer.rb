@@ -70,7 +70,7 @@ module Leadersend
       res = Net::HTTP.start(uri.host, uri.port) do |http|
         http.request(req)
       end
-      http.use_ssl = false
+
       res.body
     end
   end
