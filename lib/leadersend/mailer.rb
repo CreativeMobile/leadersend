@@ -18,6 +18,8 @@ module Leadersend
       if @template_path
         @template = ApplicationController.new.render_to_string(:partial => @template_path, :locals => @locals )
       end
+
+      @signing_domain = @from.split("@").last if @from.present?
     end
 
     def send
@@ -52,6 +54,7 @@ module Leadersend
         auto_plain: true
       }
 
+      options.merge!(signing_domain: @signing_domain) if @signing_domain.present?
       options.merge!(attachments: @attachments) if @attachments.present?
 
       resp = post_api(@api_email_url, options)
