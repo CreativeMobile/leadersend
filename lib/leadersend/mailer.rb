@@ -32,7 +32,7 @@ module Leadersend
         status: status,
         subject: @subject,
         to_address: @to,
-        response: result.to_json
+        response: result
       }
     end
 
