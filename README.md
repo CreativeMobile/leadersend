@@ -90,8 +90,10 @@ Result hash content and explanations:
   status: status, # very useful, returns "sent" on success and "error" on fail
   subject: @subject,
   to_address: @to,
-  response: result.inspect # a verbose repeat of what you already knew, for example
-  :response=>"[{\"email\"=>\"example@email.com\", \"status\"=>\"sent\", \"id\"=>\"ecf0ea8f33df690a02c83ccc86x678be\"}]"
+  response: result # a verbose repeat of what you already knew, for example
+  :response=>[{"email"=>"example@email.com",
+              "status"=>"sent",
+              "id"=>"ecf0ea8f33df690a02c83ccc86x678be"}]
 }
 ```
 
